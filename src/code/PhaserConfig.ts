@@ -3,8 +3,8 @@ import MapEditor from "./MapEditor";
 const config = {
     type: Phaser.AUTO,
     backgroundColor: '#125555',
-    width: 200,
-    height: 200,
+    width: 100,
+    height: 100,
     scene: MapEditor,
     pixelArt: true,
     antialias: false,
