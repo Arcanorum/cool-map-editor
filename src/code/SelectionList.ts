@@ -19,7 +19,7 @@ class SelectionList extends Phaser.GameObjects.Container {
     selectedTile: TileOption;
 
     constructor(scene: Phaser.Scene, mapGrid: MapGrid) {
-        super(scene, scene.cameras.main.width - 20, 20);
+        super(scene, scene.cameras.main.width - 10, 10);
         scene.add.existing(this);
 
         const options = [

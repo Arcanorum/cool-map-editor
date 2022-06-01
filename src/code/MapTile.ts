@@ -13,22 +13,20 @@ class MapTile extends Phaser.GameObjects.Image {
     constructor(scene: Phaser.Scene, row: number, col: number) {
         super(
             scene,
-            SCALED_TILE_SIZE + col * TILE_SIZE * TILE_SCALE,
-            SCALED_TILE_SIZE + row * TILE_SIZE * TILE_SCALE,
-            // Use dirt by default so Phaser knows how big to make the image based on the texture size.
-            // This shouldn't be shown at first, so could be any texture.
+            // +10 so it isn't right up against the border.
+            10 + col * TILE_SIZE * TILE_SCALE,
+            10 + row * TILE_SIZE * TILE_SCALE,
+            // Use a special empty texture by default so Phaser knows how big to make the image based on the texture size.
+            // Could just give it 0 transparency to start with to make in invisible, but then it is liable to show
+            // whatever is behind it (i.e. the game canvas colour), which may be unpredictable.
             'empty'
         );
-
-        this.setScale(TILE_SCALE);
-        
-        // The grid should appear empty by default.
-        // Use transparency instead of visiblity to maintain input events, as invisible sprites can't be interacted with.
-        // this.alpha = 0.5;
 
         // Need to manually add this new display object to the scene render list as it (annoyingly)
         // isn't automatically added by Phaser when you pass the scene to the display object's constructor.
         scene.add.existing(this);
+
+        this.setScale(TILE_SCALE);
 
         this.setInteractive();
 
@@ -40,10 +38,6 @@ class MapTile extends Phaser.GameObjects.Image {
             // Reset scale when cursor leaves.
             this.setScale(TILE_SCALE);
         });
-    }
-
-    onPressed(tileName: string) {
-
     }
 }
 

@@ -12,9 +12,7 @@ class MapGrid {
             this.tiles.push([]);
 
             for(let col=0; col<GRID_COLS; col+=1){
-
                 this.tiles[row].push(new MapTile(scene, row, col));
-                
             }
         }
     }
@@ -41,13 +39,9 @@ class MapGrid {
 
     updateTile(textureName: string) {
         const tile = this.checkTileCollisions();
-
+        
         // Check a tile was actually found.
-        if(!tile) {
-            return;
-        }
-
-        tile.setTexture(textureName);
+        tile?.setTexture(textureName);
     }
 }
 
